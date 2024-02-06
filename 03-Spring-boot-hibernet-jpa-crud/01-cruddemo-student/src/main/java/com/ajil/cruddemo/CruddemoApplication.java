@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -21,8 +24,40 @@ public class CruddemoApplication {
 
 			//createMultipleStudents(studentDAO);
 
-			readStudent(studentDAO);
+			//readStudent(studentDAO);
+
+			 //updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
 		};
+	}
+
+
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int studentId = 1;
+		System.out.println("Deleting student id: " + studentId);
+		studentDAO.delete(studentId);
+
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		// retrieve student based on the id: primary key
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student myStudent = studentDAO.findById(studentId);
+
+		// change first name to "Scooby"
+		System.out.println("Updating student ...");
+		myStudent.setFirstName("Scooby");
+
+		// update the student
+		studentDAO.update(myStudent);
+
+		// display the updated student
+		System.out.println("Updated student: " + myStudent);
+
+
 	}
 
 	private void readStudent(StudentDAO studentDAO) {

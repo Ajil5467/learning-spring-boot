@@ -2,6 +2,8 @@ package com.ajil.cruddemo.dao;
 
 import com.ajil.cruddemo.entity.Student;
 
+import java.util.List;
+
 public interface StudentDAO {
     void save(Student theStudent);
 
@@ -9,4 +11,11 @@ public interface StudentDAO {
 
     Student findById(Integer Id);
 
+
+    List<Student> findAll();
+
+
+    void update(Student theStudent);
+
+    void delete(Integer id);
 }
